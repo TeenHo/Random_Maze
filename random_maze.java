@@ -14,7 +14,7 @@ public class random_maze {
 		String[] element4 = new String[] {"|", "+"};
 		String[] element5 = new String[] {"|", " "};
 		String[] element6 = new String[] {"+", " "};
-		//add commit in 17 row
+		
 		//формирование начального элемента лабиринта
 		maze[0][0] = element1[(int)(Math.random() * 10) / 3];
 		System.out.print(maze[0][0]);
