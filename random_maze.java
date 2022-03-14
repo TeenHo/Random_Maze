@@ -1,25 +1,33 @@
 package my_lessons;
 
-import java.util.Scanner;
-
 public class random_maze {
 
 	public static void main(String[] args) {
+		Maze maze = new Maze(30, 15);
 		
-		Maze MyMaze = new Maze(30, 15);
+	}
+}
+
+class Maze {
+	private int Length;
+	private int Width;
+	
+	public Maze (int Length, int Width) {
+		this.Length = Length;
+		this.Width = Width;
 		
-		String[][] maze = new String[MyMaze.getLength()][MyMaze.getWidth()];
+		String[][] maze = new String[this.Length][this.Width];
 		String[] element2 = new String[] {"+", "-"};
 		String[] element3 = new String[] {"-", " "};
 		String[] element4 = new String[] {"|", "+"};
 		String[] element5 = new String[] {"|", " "};
 		String[] element6 = new String[] {"+", " "};
-	
+		
 		//формирование начального элемента лабиринта
 		maze[0][0] = MazeStartElement();
 		
 		//заполнение горизонтальной границы лабиринта
-		for (int i = 1; i < MyMaze.getLength(); i++) {
+		for (int i = 1; i < this.Length; i++) {
 			if (maze[i - 1][0] == " ")
 				maze[i][0] = "+";
 			else if (maze[i - 1][0] == "|")
@@ -34,7 +42,7 @@ public class random_maze {
 		System.out.println();
 		
 		//заполнение вертикальной границы лабиринта
-		for (int j = 1; j < MyMaze.getWidth(); j++) {
+		for (int j = 1; j < this.Width; j++) {
 			if (maze[0][j - 1] == " ")
 				maze[0][j] = element2[(int)(Math.random() * 10) / 5];
 			else if (maze[0][j - 1] == "|")
@@ -46,8 +54,8 @@ public class random_maze {
 		}
 		
 		//заполнение оставшейся зоны лабиринта
-		for (int j = 1; j < MyMaze.getWidth(); j++) {
-			for (int i = 0; i < MyMaze.getLength(); i++) {
+		for (int j = 1; j < this.Width; j++) {
+			for (int i = 0; i < this.Length; i++) {
 				if (i > 0) {
 					if (maze[i][j - 1] == " ") {
 						if (maze[i - 1][j] == " ") {
@@ -87,31 +95,6 @@ public class random_maze {
 			}
 			System.out.println();
 		}
-
-	}
-	
-	public static String MazeStartElement() {
-		String[] element1 = new String[] {"+", "-", "|", " "};
-		String maze = element1[(int)(Math.random() * 10) / 3];
-		System.out.print(maze);
-		return maze;
-	}
-	
-	//public int getMazeLength() {
-	//	Scanner sc = new Scanner(System.in);
-	//	int MazeLength = sc.nextInt();
-	//	return MazeLength;
-	//}
-
-}
-
-class Maze {
-	private int Length;
-	private int Width;
-	
-	public Maze (int Length, int Width) {
-		this.Length = Length;
-		this.Width = Width;
 	}
 	
 	public int getLength() {
@@ -128,6 +111,13 @@ class Maze {
 	
 	public void setWidth(int Width) {
 		this.Width = Width;
+	}
+	
+	public static String MazeStartElement() {
+		String[] element1 = new String[] {"+", "-", "|", " "};
+		String maze = element1[(int)(Math.random() * 10) / 3];
+		System.out.print(maze);
+		return maze;
 	}
 	
 }
