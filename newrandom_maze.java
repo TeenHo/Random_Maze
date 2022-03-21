@@ -18,8 +18,6 @@ class Maze {
 		
 		String[][] maze = new String[this.Length][this.Width];
 		
-		String symbol1 = " ";
-		
 		for (int j = 0; j < this.Width; j += 2) {
 			for (int i = 0; i < this.Length; i += 2) {
 				maze[i][j] = "+";
@@ -34,19 +32,17 @@ class Maze {
 		
 		//заполнение верхней границы
 		for (int i = 1; i < this.Length; i += 2) {
-			maze[i][0] = RandomElement("-", symbol1);
-			if (maze[i][0] == " ")
-				symbol1 = "-";
+			maze[i][0] = "-";
 		}
-		
-		symbol1 = " ";
+		//создание входа
+		maze[EntranceExit()][0] = " ";
 		
 		//заполнение нижней границы
 		for (int i = 1; i < this.Length; i += 2) {
-			maze[i][this.Width - 1] = RandomElement("-", symbol1);
-			if (maze[i][this.Width - 1] == " ")
-				symbol1 = "-";
+			maze[i][this.Width - 1] = "-";
 		}
+		//создание выхода
+		maze[EntranceExit()][this.Width - 1] = " ";
 		
 		//заполнение боковых границ
 		for (int j = 1; j < this.Width; j += 2) {
@@ -96,5 +92,9 @@ class Maze {
 	public String RandomElement(String element1, String element2) {
 		String[] elements = new String[] {element1, element2};
 		return elements[(int)(Math.random() * 10) / 5];
+	}
+	
+	public int EntranceExit() {
+		return ((int)(Math.random() * ((Length - 3) / 2)) * 2 + 1);
 	}
 }
