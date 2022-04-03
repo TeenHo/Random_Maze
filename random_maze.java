@@ -24,7 +24,7 @@ public class random_maze {
 					new Maze3(length, width);
 					break;
 				default:
-					System.out.println("Неверный ввод!");
+					System.out.println("Работа окончена.");
 					in.close();
 					a++;
 					break;
