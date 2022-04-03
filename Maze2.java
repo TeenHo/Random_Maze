@@ -1,18 +1,10 @@
-package my_lessons;
+package Random_Maze;
 
-public class random_maze {
-
-	public static void main(String[] args) {
-		new Maze(29, 15);
-		
-	}
-}
-
-class Maze {
+public class Maze2 {
 	private int Length;
 	private int Width;
 	
-	public Maze (int Length, int Width) {
+	public Maze2 (int Length, int Width) {
 		this.Length = Length;
 		this.Width = Width;
 		
@@ -30,27 +22,27 @@ class Maze {
 			}
 		}
 		
-		//Р·Р°РїРѕР»РЅРµРЅРёРµ РІРµСЂС…РЅРµР№ РіСЂР°РЅРёС†С‹
+		//заполнение верхней границы
 		for (int i = 1; i < this.Length; i += 2) {
 			maze[i][0] = "-";
 		}
-		//СЃРѕР·РґР°РЅРёРµ РІС…РѕРґР°
+		//создание входа
 		maze[EntranceExit()][0] = " ";
 		
-		//Р·Р°РїРѕР»РЅРµРЅРёРµ РЅРёР¶РЅРµР№ РіСЂР°РЅРёС†С‹
+		//заполнение нижней границы
 		for (int i = 1; i < this.Length; i += 2) {
 			maze[i][this.Width - 1] = "-";
 		}
-		//СЃРѕР·РґР°РЅРёРµ РІС‹С…РѕРґР°
+		//создание выхода
 		maze[EntranceExit()][this.Width - 1] = " ";
 		
-		//Р·Р°РїРѕР»РЅРµРЅРёРµ Р±РѕРєРѕРІС‹С… РіСЂР°РЅРёС†
+		//заполнение боковых границ
 		for (int j = 1; j < this.Width; j += 2) {
 			maze[0][j] = "|";
 			maze[this.Length - 1][j] = "|";
 		}
 		
-		//Р·Р°РїРѕР»РЅРµРЅРёРµ РІРЅСѓС‚СЂРµРЅРЅРµР№ С‡Р°СЃС‚Рё Р»Р°Р±РёСЂРёРЅС‚Р°
+		//заполнение внутренней части лабиринта
 		for (int j = 1; j < this.Width; j += 2) {
 			for (int i = 2; i < this.Length - 1; i += 2) {
 				maze[i][j] = RandomElement("|", " ");
@@ -63,7 +55,7 @@ class Maze {
 			}
 		}
 		
-		//РІС‹РІРѕРґ Р»Р°Р±РёСЂРёРЅС‚Р°
+		//вывод лабиринта
 		for (int j = 0; j < this.Width; j++) {
 			for (int i = 0; i < this.Length; i++) {
 				System.out.print(maze[i][j]);
